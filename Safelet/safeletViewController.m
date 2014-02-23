@@ -25,6 +25,34 @@
     locManager.delegate = self;
     locManager.desiredAccuracy = kCLLocationAccuracyBest;
     gc = [[CLGeocoder alloc] init];
+    
+    latTitle = [[UILabel alloc]initWithFrame:CGRectMake(75, 100, 200, 40)];
+    [latTitle setBackgroundColor:[UIColor clearColor]];
+    [latTitle setText:@"Lat:"];
+    [[self view] addSubview:latTitle];
+    
+    latValue = [[UILabel alloc]initWithFrame:CGRectMake(120, 100, 300, 40)];
+    [latValue setBackgroundColor:[UIColor clearColor]];
+    [[self view] addSubview:latValue];
+    
+    longTitle = [[UILabel alloc]initWithFrame:CGRectMake(60, 120, 200, 40)];
+    [longTitle setBackgroundColor:[UIColor clearColor]];
+    [longTitle setText:@"Long:"];
+    [[self view] addSubview:longTitle];
+    
+    longValue = [[UILabel alloc]initWithFrame:CGRectMake(120, 120, 300, 40)];
+    [longValue setBackgroundColor:[UIColor clearColor]];
+    [[self view] addSubview:longValue];
+    
+    addressTitle = [[UILabel alloc]initWithFrame:CGRectMake(35, 140, 200, 40)];
+    [addressTitle setBackgroundColor:[UIColor clearColor]];
+    [addressTitle setText:@"Address:"];
+    [[self view] addSubview:addressTitle];
+    
+    addressValue = [[UILabel alloc]initWithFrame:CGRectMake(120, 130, 300, 100)];
+    [addressValue setNumberOfLines:0];
+    [addressValue setBackgroundColor:[UIColor clearColor]];
+    [[self view] addSubview:addressValue];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,11 +66,20 @@
     [self stopBTScan];
 }
 
-- (IBAction) startBTScan:(id) sender
+- (IBAction) buttonPress:(id) sender
 {
     button = (UIButton *)sender;
-    [button setTitle:@"Searching..." forState:UIControlStateNormal];
-    [manager scanForPeripheralsWithServices:nil options:nil];
+    if ([button.titleLabel.text isEqualToString:@"Disconnect"]) {
+        [manager cancelPeripheralConnection:peripheral];
+        [button setTitle:@"Connect" forState:UIControlStateNormal];
+    }
+    else if ([button.titleLabel.text isEqualToString:@"Connect"]) {
+        [button setTitle:@"Searching..." forState:UIControlStateNormal];
+        [manager scanForPeripheralsWithServices:nil options:nil];
+    }
+    else {
+        NSLog(@"NOTHIN!");
+    }
 }
 
 - (void) stopBTScan
@@ -113,7 +150,7 @@
             }
         }
         NSLog(@"Ready for use");
-        [button setTitle:@"Ready" forState:UIControlStateNormal];
+        [button setTitle:@"Disconnect" forState:UIControlStateNormal];
     }
 }
 - (void) peripheral:(CBPeripheral *)aPeripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -150,16 +187,17 @@
     currentLoc = newLocation;
     
     if (currentLoc != nil) {
-        NSLog(@"\n Longitude: %f\n Latitude: %f", currentLoc.coordinate.longitude, currentLoc.coordinate.latitude);
+        [latValue setText:[NSString stringWithFormat:@"%f", currentLoc.coordinate.latitude]];
+        [longValue setText:[NSString stringWithFormat:@"%f", currentLoc.coordinate.longitude]];
     }
     
     NSLog(@"Resolving the Address");
     [gc reverseGeocodeLocation:currentLoc completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
-            NSLog(@"\n %@ %@\n %@, %@ %@\n %@", placemark.subThoroughfare, placemark.thoroughfare,
-                  placemark.locality, placemark.administrativeArea, placemark.postalCode,
-                  placemark.country);
+            [addressValue setText:[NSString stringWithFormat:@"\n %@ %@\n %@, %@ %@\n %@",
+                placemark.subThoroughfare, placemark.thoroughfare, placemark.locality,
+                placemark.administrativeArea, placemark.postalCode, placemark.country]];
         } else {
             if (error.code == 2) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No internet connection could be found." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];

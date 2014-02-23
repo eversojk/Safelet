@@ -23,9 +23,15 @@
     bool checkLoc;
     
     UIButton *button;
+    UILabel *latTitle;
+    UILabel *latValue;
+    UILabel *longTitle;
+    UILabel *longValue;
+    UILabel *addressTitle;
+    UILabel *addressValue;
 }
 
 - (void) dealloc;
-- (IBAction) startBTScan:(id) sender;
+- (IBAction) buttonPress:(id) sender;
 - (void) stopBTScan;
 @end

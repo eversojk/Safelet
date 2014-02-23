@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDH-Qh-CgB">
-                                <rect key="frame" x="81" y="108" width="159" height="113"/>
+                                <rect key="frame" x="84" y="75" width="152" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Connect">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startBTScan:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5Ob-fF-vsT"/>
+                                    <action selector="buttonPress:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8bi-Sc-vrI"/>
                                 </connections>
                             </button>
                         </subviews>
