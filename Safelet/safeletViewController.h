@@ -17,6 +17,8 @@
     CBUUID *simpleKeysChar;
     CLLocationManager *locManager;
     CLLocation *currentLoc;
+    CLGeocoder *gc;
+    CLPlacemark *placemark;
     bool checkLoc;
 }
 

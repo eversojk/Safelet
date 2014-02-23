@@ -24,7 +24,7 @@
     locManager = [[CLLocationManager alloc] init];
     locManager.delegate = self;
     locManager.desiredAccuracy = kCLLocationAccuracyBest;
-    // Do any additional setup after loading the view, typically from a nib.
+    gc = [[CLGeocoder alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,6 +146,18 @@
         NSLog(@"Longitude: %f", currentLoc.coordinate.longitude);
         NSLog(@"Latitude: %f", currentLoc.coordinate.latitude);
     }
+    
+    NSLog(@"Resolving the Address");
+    [gc reverseGeocodeLocation:currentLoc completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error == nil && [placemarks count] > 0) {
+            placemark = [placemarks lastObject];
+            NSLog(@"\n %@ %@\n %@, %@ %@\n %@", placemark.subThoroughfare, placemark.thoroughfare,
+                  placemark.locality, placemark.administrativeArea, placemark.postalCode,
+                  placemark.country);
+        } else {
+            NSLog(@"%@", error.debugDescription);
+        }
+    } ];
     
     // Stop Location Manager
     [locManager stopUpdatingLocation];
