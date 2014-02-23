@@ -6,7 +6,21 @@
 //  Copyright (c) 2014 Team Safelet. All rights reserved.
 //
 
+#import <CoreBluetooth/CoreBluetooth.h>
+#import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
-@interface safeletViewController : UIViewController
+@interface safeletViewController : UIViewController {
+    CBCentralManager *manager;
+    CBPeripheral *peripheral;
+    CBUUID *simpleKeys;
+    CBUUID *simpleKeysChar;
+    CLLocationManager *locManager;
+    CLLocation *currentLoc;
+    bool checkLoc;
+}
+
+- (void) dealloc;
+- (void) startBTScan;
+- (void) stopBTScan;
 @end
