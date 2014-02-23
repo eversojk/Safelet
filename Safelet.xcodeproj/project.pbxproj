@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525E807118BA72880060F6A4 /* CoreLocation.framework */; };
 		52AC57A618B87292002E039C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A518B87292002E039C /* Foundation.framework */; };
 		52AC57A818B87292002E039C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A718B87292002E039C /* CoreGraphics.framework */; };
 		52AC57AA18B87292002E039C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A918B87292002E039C /* UIKit.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		525E807118BA72880060F6A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		52AC57A218B87292002E039C /* Safelet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safelet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AC57A518B87292002E039C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52AC57A718B87292002E039C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */,
 				52B5243718B8BD190057F165 /* CoreBluetooth.framework in Frameworks */,
 				52AC57A818B87292002E039C /* CoreGraphics.framework in Frameworks */,
 				52AC57AA18B87292002E039C /* UIKit.framework in Frameworks */,
@@ -104,6 +107,7 @@
 		52AC57A418B87292002E039C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				525E807118BA72880060F6A4 /* CoreLocation.framework */,
 				52B5243618B8BD190057F165 /* CoreBluetooth.framework */,
 				52AC57A518B87292002E039C /* Foundation.framework */,
 				52AC57A718B87292002E039C /* CoreGraphics.framework */,

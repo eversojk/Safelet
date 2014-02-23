@@ -7,6 +7,7 @@
 //
 
 #import <CoreBluetooth/CoreBluetooth.h>
+#import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
 @interface safeletAppDelegate : UIResponder <UIApplicationDelegate>
@@ -15,6 +16,9 @@
     CBPeripheral *peripheral;
     CBUUID *simpleKeys;
     CBUUID *simpleKeysChar;
+    CLLocationManager *locManager;
+    CLLocation *currentLoc;
+    bool checkLoc;
 }
 
 @property (strong, nonatomic) UIWindow *window;

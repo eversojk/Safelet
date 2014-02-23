@@ -15,7 +15,11 @@
     manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     simpleKeys = [CBUUID UUIDWithString:@"ffe0"];
     simpleKeysChar = [CBUUID UUIDWithString:@"ffe1"];
-    // Override point for customization after application launch.
+    
+    checkLoc = true;
+    locManager = [[CLLocationManager alloc] init];
+    locManager.delegate = self;
+    locManager.desiredAccuracy = kCLLocationAccuracyBest;
     return YES;
 }
 							
@@ -140,6 +144,9 @@
                     break;
                 case 2:
                     NSLog(@"Left button was pressed");
+                    if (checkLoc) {
+                        [locManager startUpdatingLocation];
+                    }
                     break;
                 default:
                     NSLog(@"Button was released");
@@ -149,4 +156,17 @@
     }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    currentLoc = newLocation;
+    
+    if (currentLoc != nil) {
+        NSLog(@"Longitude: %f", currentLoc.coordinate.longitude);
+        NSLog(@"Latitude: %f", currentLoc.coordinate.latitude);
+    }
+    
+    // Stop Location Manager
+    [locManager stopUpdatingLocation];
+}
 @end
