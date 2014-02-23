@@ -15,14 +15,17 @@
     CBPeripheral *peripheral;
     CBUUID *simpleKeys;
     CBUUID *simpleKeysChar;
-    CLLocationManager *locManager;
-    CLLocation *currentLoc;
+    
     CLGeocoder *gc;
+    CLLocation *currentLoc;
+    CLLocationManager *locManager;
     CLPlacemark *placemark;
     bool checkLoc;
+    
+    UIButton *button;
 }
 
 - (void) dealloc;
-- (void) startBTScan;
+- (IBAction) startBTScan:(id) sender;
 - (void) stopBTScan;
 @end

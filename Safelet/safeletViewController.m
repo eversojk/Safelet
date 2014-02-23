@@ -38,8 +38,10 @@
     [self stopBTScan];
 }
 
-- (void) startBTScan
+- (IBAction) startBTScan:(id) sender
 {
+    button = (UIButton *)sender;
+    [button setTitle:@"Searching..." forState:UIControlStateNormal];
     [manager scanForPeripheralsWithServices:nil options:nil];
 }
 
@@ -59,6 +61,7 @@
     */
     if ([[advertisementData objectForKey:@"kCBAdvDataLocalName"] isEqualToString:@"SensorTag"]) {
         NSLog(@"Found SensorTag");
+        [button setTitle:@"Found SensorTag" forState:UIControlStateNormal];
         [self stopBTScan];
         peripheral = aPeripheral;
         [manager connectPeripheral:peripheral options:nil];
@@ -67,10 +70,12 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    /*
     if(central.state==CBCentralManagerStatePoweredOn)
     {
         [self startBTScan];
     }
+     */
 }
 
 - (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
@@ -90,6 +95,7 @@
         }
     }
     NSLog(@"Finished discovering services");
+    [button setTitle:@"Connected" forState:UIControlStateNormal];
 }
 
 - (void) peripheral:(CBPeripheral *)aPeripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
@@ -106,7 +112,8 @@
                 [peripheral setNotifyValue:YES forCharacteristic:c];
             }
         }
-        NSLog(@"Finished searching");
+        NSLog(@"Ready for use");
+        [button setTitle:@"Ready" forState:UIControlStateNormal];
     }
 }
 - (void) peripheral:(CBPeripheral *)aPeripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -154,7 +161,11 @@
                   placemark.locality, placemark.administrativeArea, placemark.postalCode,
                   placemark.country);
         } else {
-            NSLog(@"%@", error.debugDescription);
+            if (error.code == 2) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No internet connection could be found." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
+            NSLog(@"Code: %ld", (long) error.code);
         }
     } ];
     
