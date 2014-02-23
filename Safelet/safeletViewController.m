@@ -143,8 +143,7 @@
     currentLoc = newLocation;
     
     if (currentLoc != nil) {
-        NSLog(@"Longitude: %f", currentLoc.coordinate.longitude);
-        NSLog(@"Latitude: %f", currentLoc.coordinate.latitude);
+        NSLog(@"\n Longitude: %f\n Latitude: %f", currentLoc.coordinate.longitude, currentLoc.coordinate.latitude);
     }
     
     NSLog(@"Resolving the Address");
