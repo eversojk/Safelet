@@ -9,7 +9,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <UIKit/UIKit.h>
 
-@interface searchViewController : UIViewController <UITableViewDelegate, UITableViewDelegate> {
+@interface searchViewController : UIViewController {
     CBCentralManager *manager;
     CBPeripheral *peripheral;
     CBUUID *simpleKeys;
