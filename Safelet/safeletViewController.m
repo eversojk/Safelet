@@ -26,6 +26,7 @@
     locManager.desiredAccuracy = kCLLocationAccuracyBest;
     gc = [[CLGeocoder alloc] init];
     
+    /*
     latTitle = [[UILabel alloc]initWithFrame:CGRectMake(75, 100, 200, 40)];
     [latTitle setBackgroundColor:[UIColor clearColor]];
     [latTitle setText:@"Lat:"];
@@ -53,6 +54,7 @@
     [addressValue setNumberOfLines:0];
     [addressValue setBackgroundColor:[UIColor clearColor]];
     [[self view] addSubview:addressValue];
+     */
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +70,7 @@
 
 - (IBAction) buttonPress:(id) sender
 {
+    /*
     button = (UIButton *)sender;
     if ([button.titleLabel.text isEqualToString:@"Disconnect"]) {
         [manager cancelPeripheralConnection:peripheral];
@@ -80,6 +83,7 @@
     else {
         NSLog(@"NOTHIN!");
     }
+    */
 }
 
 - (void) stopBTScan
@@ -105,15 +109,15 @@
     }
 }
 
+/*
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    /*
     if(central.state==CBCentralManagerStatePoweredOn)
     {
         [self startBTScan];
     }
-     */
 }
+ */
 
 - (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
 {

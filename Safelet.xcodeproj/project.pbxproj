@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52356A4218E6CACC00F8C363 /* searchViewController.m */; };
+		52356A4518E6CACC00F8C363 /* searchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52356A4318E6CACC00F8C363 /* searchViewController.xib */; };
 		525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525E807118BA72880060F6A4 /* CoreLocation.framework */; };
 		52AC57A618B87292002E039C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A518B87292002E039C /* Foundation.framework */; };
 		52AC57A818B87292002E039C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A718B87292002E039C /* CoreGraphics.framework */; };
@@ -36,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52356A4118E6CACC00F8C363 /* searchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchViewController.h; sourceTree = "<group>"; };
+		52356A4218E6CACC00F8C363 /* searchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchViewController.m; sourceTree = "<group>"; };
+		52356A4318E6CACC00F8C363 /* searchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchViewController.xib; sourceTree = "<group>"; };
 		525E807118BA72880060F6A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		52AC57A218B87292002E039C /* Safelet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safelet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AC57A518B87292002E039C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -127,6 +132,9 @@
 				52AC57BB18B87292002E039C /* safeletViewController.m */,
 				52AC57BD18B87292002E039C /* Images.xcassets */,
 				52AC57AC18B87292002E039C /* Supporting Files */,
+				52356A4118E6CACC00F8C363 /* searchViewController.h */,
+				52356A4218E6CACC00F8C363 /* searchViewController.m */,
+				52356A4318E6CACC00F8C363 /* searchViewController.xib */,
 			);
 			path = Safelet;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			files = (
 				52AC57BE18B87292002E039C /* Images.xcassets in Resources */,
 				52AC57B018B87292002E039C /* InfoPlist.strings in Resources */,
+				52356A4518E6CACC00F8C363 /* searchViewController.xib in Resources */,
 				52AC57B918B87292002E039C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +269,7 @@
 			files = (
 				52AC57B218B87292002E039C /* main.m in Sources */,
 				52AC57BC18B87292002E039C /* safeletViewController.m in Sources */,
+				52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */,
 				52AC57B618B87292002E039C /* safeletAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
