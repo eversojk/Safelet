@@ -9,11 +9,10 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <UIKit/UIKit.h>
 
-@interface searchViewController : UIViewController {
-    CBCentralManager *manager;
-    NSMutableDictionary *devices;
-    UIActivityIndicatorView *activityView;
-}
+@interface searchViewController : UIViewController
+@property (strong) CBCentralManager *manager;
+@property (strong) NSMutableDictionary *devices;
+@property (strong) UIActivityIndicatorView *activityView;
 
 - (IBAction) buttonPress:(id) sender;
 @end

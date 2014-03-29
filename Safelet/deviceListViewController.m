@@ -29,8 +29,11 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.activity];
+    [self.manager setDelegate:self];
+    //self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    
     NSLog(@"Devices: %@", self.devices);
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,16 +59,51 @@
     }
     
     // bad way to do this!
-    NSLog(@"Am I making it here?");
     int loc = 0;
     for (id key in self.devices) {
-        NSLog(@"key: %@", key);
         if (loc == indexPath.row) {
-            cell.textLabel.text = @"LALALALA";
+            cell.textLabel.text = key;
         }
         loc++;
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:@"Device" message:[NSString stringWithFormat:@"Are you sure you want to connect to %@?", cell.textLabel.text] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
+    
+    // save user selection
+    self.selection = cell.textLabel.text;
+    [messageAlert show];
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // ok
+    if (buttonIndex == 0) {
+        [self.activity startAnimating];
+        CBPeripheral *sensortag = [self.devices objectForKey:self.selection];
+        [self.manager connectPeripheral:sensortag options:nil];
+    }
+    // cancel
+    else if (buttonIndex == 1) {
+    }
+}
+
+- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
+{
+    NSLog(@"Connected to SensorTag");
+    [aPeripheral setDelegate:self];
+    [aPeripheral discoverServices:nil];
+    [self.activity stopAnimating];
+    self.sensorTag = aPeripheral;
+}
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    NSLog(@"Failed, all hope is lost");
+    NSLog(@"Error: %@", error);
+    [self.activity stopAnimating];
 }
 
 @end

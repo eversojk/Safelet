@@ -29,20 +29,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    devices = [[NSMutableDictionary alloc] init];
+    self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    self.devices = [[NSMutableDictionary alloc] init];
     // create activity spinner
-    activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityView.center=self.view.center;
-    [self.view addSubview:activityView];
+    self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.activityView.center=self.view.center;
+    [self.view addSubview:self.activityView];
 }
 
 - (IBAction) buttonPress:(id) sender
 {
     // only scan if bluetooth manager is ready
     if (self.ready) {
-        [manager scanForPeripheralsWithServices:nil options:nil];
-        [activityView startAnimating];
+        [self.manager scanForPeripheralsWithServices:nil options:nil];
+        [self.activityView startAnimating];
         NSLog(@"SCANNING");
     } else {
         NSLog(@"NOT READY");
@@ -65,7 +65,7 @@
 
 - (void) stopBTScan
 {
-    [manager stopScan];
+    [self.manager stopScan];
 }
 
 - (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)aPeripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
@@ -80,22 +80,28 @@
     // get bluetooth device name
     NSString *name = [advertisementData objectForKey:@"kCBAdvDataLocalName"];
     
-    NSLog(@"Found");
     // make sure it's giving us a name
     if (name != nil) {
-        [devices setObject:aPeripheral forKey:[advertisementData objectForKey:@"kCBAdvDataLocalName"]];
+        [self.devices setObject:aPeripheral forKey:[advertisementData objectForKey:@"kCBAdvDataLocalName"]];
     }
     
     // if it's sensortag, stop scanning
     if ([name isEqualToString:@"SensorTag"]) {
         [self stopBTScan];
-        [activityView stopAnimating];
+        [self.activityView stopAnimating];
         deviceListViewController *new = [[deviceListViewController alloc] initWithNibName:@"deviceListViewController" bundle:nil];
-        new.manager = manager;
-        new.devices = devices;
+        new.manager = self.manager;
+        new.devices = self.devices;
+        new.activity = self.activityView;
         [self.navigationController pushViewController:new animated:YES];
-        NSLog(@"Done");
     }
 }
 
+- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
+{
+    NSLog(@"Connected to SensorTag");
+    [aPeripheral setDelegate:self];
+    [aPeripheral discoverServices:nil];
+    //[self.activity stopAnimating];
+}
 @end

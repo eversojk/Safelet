@@ -12,8 +12,11 @@
 @interface deviceListViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSString *selection;
 @property UITableView *tableView;
-@property (nonatomic) CBCentralManager *manager;
-@property (nonatomic) NSMutableDictionary *devices;
+@property UIActivityIndicatorView *activity;
+@property CBCentralManager *manager;
+@property NSMutableDictionary *devices;
+@property CBPeripheral *sensorTag;
 
 @end

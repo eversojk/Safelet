@@ -95,7 +95,6 @@
                     <connections>
                         <outlet property="device" destination="Dgn-SO-AVb" id="48k-nu-gX2"/>
                         <outlet property="searchBtn" destination="hfF-hu-w0Z" id="17o-Wc-0HJ"/>
-                        <segue destination="5Cp-AF-rt3" kind="push" id="INE-Hw-7Az"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEc-ze-KJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
