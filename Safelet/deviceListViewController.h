@@ -11,7 +11,6 @@
 
 @interface deviceListViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
-//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSString *selection;
 @property UITableView *tableView;
 @property UIActivityIndicatorView *activity;

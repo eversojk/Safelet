@@ -10,7 +10,6 @@
 #import "searchViewController.h"
 
 @interface searchViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 @property (weak, nonatomic) IBOutlet UILabel *device;
 @property BOOL ready;
 @end
@@ -39,6 +38,16 @@
 
 - (IBAction) buttonPress:(id) sender
 {
+    // existing account
+    if ((UIButton *) sender == self.btn1) {
+        self.nextView = @"old";
+    // new account
+    } else {
+        self.nextView = @"new";
+       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account" message:[NSString stringWithFormat:@"The first step of a new account is to find your Safelet."] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    
     // only scan if bluetooth manager is ready
     if (self.ready) {
         [self.manager scanForPeripheralsWithServices:nil options:nil];
@@ -89,11 +98,17 @@
     if ([name isEqualToString:@"SensorTag"]) {
         [self stopBTScan];
         [self.activityView stopAnimating];
-        deviceListViewController *new = [[deviceListViewController alloc] initWithNibName:@"deviceListViewController" bundle:nil];
-        new.manager = self.manager;
-        new.devices = self.devices;
-        new.activity = self.activityView;
-        [self.navigationController pushViewController:new animated:YES];
+        
+        if ([self.nextView isEqualToString:@"new"]) {
+            deviceListViewController *v = [[deviceListViewController alloc] initWithNibName:@"deviceListViewController" bundle:nil];
+            v.manager = self.manager;
+            v.devices = self.devices;
+            v.activity = self.activityView;
+            [self.navigationController pushViewController:v animated:YES];
+        } else {
+            NSLog(@"NOT IMPLEMENTED");
+        }
+        
     }
 }
 @end

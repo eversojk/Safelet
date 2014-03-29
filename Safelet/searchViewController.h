@@ -10,9 +10,12 @@
 #import <UIKit/UIKit.h>
 
 @interface searchViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (strong) CBCentralManager *manager;
 @property (strong) NSMutableDictionary *devices;
 @property (strong) UIActivityIndicatorView *activityView;
+@property NSString *nextView;
 
 - (IBAction) buttonPress:(id) sender;
 @end

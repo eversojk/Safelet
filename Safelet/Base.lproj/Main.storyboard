@@ -72,20 +72,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No device found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgn-SO-AVb">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="**** SAFELET ****" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgn-SO-AVb">
                                 <rect key="frame" x="95" y="100" width="131" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfF-hu-w0Z">
-                                <rect key="frame" x="136" y="145" width="48" height="30"/>
+                                <rect key="frame" x="136" y="145" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search">
+                                <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="buttonPress:" destination="FV0-bQ-zLR" eventType="touchUpInside" id="t6P-hu-Prv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cD-fh-LOk">
+                                <rect key="frame" x="106" y="203" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Make account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPress:" destination="FV0-bQ-zLR" eventType="touchUpInside" id="DZw-UO-H7m"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -93,8 +103,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="CaU-Ny-OXh"/>
                     <connections>
+                        <outlet property="btn1" destination="hfF-hu-w0Z" id="GvQ-Q5-tuP"/>
+                        <outlet property="btn2" destination="1cD-fh-LOk" id="vCZ-dj-FcX"/>
                         <outlet property="device" destination="Dgn-SO-AVb" id="48k-nu-gX2"/>
-                        <outlet property="searchBtn" destination="hfF-hu-w0Z" id="17o-Wc-0HJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEc-ze-KJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
