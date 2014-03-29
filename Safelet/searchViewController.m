@@ -84,13 +84,15 @@
         [devices setObject:aPeripheral forKey:[advertisementData objectForKey:@"kCBAdvDataLocalName"]];
     }
     
-    // if it's sensortag, scanning
+    // if it's sensortag, stop scanning
     if ([name isEqualToString:@"SensorTag"]) {
         [self stopBTScan];
         [activityView stopAnimating];
         deviceListViewController *new = [[deviceListViewController alloc] initWithNibName:@"deviceListViewController" bundle:nil];
         new.manager = manager;
         new.devices = devices;
+        // swap to device list
+        [self.navigationController pushViewController:new animated:YES];
     }
 }
 @end
