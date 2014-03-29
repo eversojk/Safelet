@@ -100,6 +100,7 @@
     [self.activity stopAnimating];
     self.sensorTag = aPeripheral;
 }
+
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Failed, all hope is lost");
     NSLog(@"Error: %@", error);

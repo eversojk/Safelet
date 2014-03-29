@@ -96,12 +96,4 @@
         [self.navigationController pushViewController:new animated:YES];
     }
 }
-
-- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
-{
-    NSLog(@"Connected to SensorTag");
-    [aPeripheral setDelegate:self];
-    [aPeripheral discoverServices:nil];
-    //[self.activity stopAnimating];
-}
 @end
