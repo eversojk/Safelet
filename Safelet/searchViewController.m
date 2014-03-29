@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Team Safelet. All rights reserved.
 //
 
+#import "deviceListViewController.h"
 #import "searchViewController.h"
 
 @interface searchViewController ()
@@ -15,8 +16,7 @@
 @end
 
 @implementation searchViewController
-NSMutableDictionary *devices;
-UIActivityIndicatorView *activityView;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +30,8 @@ UIActivityIndicatorView *activityView;
 {
     [super viewDidLoad];
     manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    simpleKeys = [CBUUID UUIDWithString:@"ffe0"];
-    simpleKeysChar = [CBUUID UUIDWithString:@"ffe1"];
     devices = [[NSMutableDictionary alloc] init];
+    // create activity spinner
     activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityView.center=self.view.center;
     [self.view addSubview:activityView];
@@ -40,6 +39,7 @@ UIActivityIndicatorView *activityView;
 
 - (IBAction) buttonPress:(id) sender
 {
+    // only scan if bluetooth manager is ready
     if (self.ready) {
         [manager scanForPeripheralsWithServices:nil options:nil];
         [activityView startAnimating];
@@ -57,6 +57,7 @@ UIActivityIndicatorView *activityView;
 {
     if(central.state==CBCentralManagerStatePoweredOn)
     {
+        // mark bluetooth manager as ready
         self.ready = YES;
     }
 }
@@ -75,15 +76,21 @@ UIActivityIndicatorView *activityView;
      kCBAdvDataLocalName: SensorTag
      kCBAdvDataTxPowerLevel: 0
      */
+    // get bluetooth device name
     NSString *name = [advertisementData objectForKey:@"kCBAdvDataLocalName"];
+    
+    // make sure it's giving us a name
     if (name != nil) {
         [devices setObject:aPeripheral forKey:[advertisementData objectForKey:@"kCBAdvDataLocalName"]];
     }
     
+    // if it's sensortag, scanning
     if ([name isEqualToString:@"SensorTag"]) {
-        NSLog(@"Made it");
         [self stopBTScan];
         [activityView stopAnimating];
+        deviceListViewController *new = [[deviceListViewController alloc] initWithNibName:@"deviceListViewController" bundle:nil];
+        new.manager = manager;
+        new.devices = devices;
     }
 }
 @end

@@ -11,9 +11,8 @@
 
 @interface searchViewController : UIViewController {
     CBCentralManager *manager;
-    CBPeripheral *peripheral;
-    CBUUID *simpleKeys;
-    CBUUID *simpleKeysChar;
+    NSMutableDictionary *devices;
+    UIActivityIndicatorView *activityView;
 }
 
 - (IBAction) buttonPress:(id) sender;

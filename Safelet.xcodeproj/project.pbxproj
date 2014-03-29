@@ -25,6 +25,8 @@
 		52AC57CF18B87292002E039C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AC57CD18B87292002E039C /* InfoPlist.strings */; };
 		52AC57D118B87292002E039C /* SafeletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC57D018B87292002E039C /* SafeletTests.m */; };
 		52B5243718B8BD190057F165 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5243618B8BD190057F165 /* CoreBluetooth.framework */; };
+		52FA265B18E6F048008EAD91 /* deviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA265918E6F048008EAD91 /* deviceListViewController.m */; };
+		52FA265C18E6F048008EAD91 /* deviceListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FA265A18E6F048008EAD91 /* deviceListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,9 @@
 		52AC57CE18B87292002E039C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52AC57D018B87292002E039C /* SafeletTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeletTests.m; sourceTree = "<group>"; };
 		52B5243618B8BD190057F165 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		52FA265818E6F048008EAD91 /* deviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deviceListViewController.h; sourceTree = "<group>"; };
+		52FA265918E6F048008EAD91 /* deviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deviceListViewController.m; sourceTree = "<group>"; };
+		52FA265A18E6F048008EAD91 /* deviceListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = deviceListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +140,9 @@
 				52356A4118E6CACC00F8C363 /* searchViewController.h */,
 				52356A4218E6CACC00F8C363 /* searchViewController.m */,
 				52356A4318E6CACC00F8C363 /* searchViewController.xib */,
+				52FA265818E6F048008EAD91 /* deviceListViewController.h */,
+				52FA265918E6F048008EAD91 /* deviceListViewController.m */,
+				52FA265A18E6F048008EAD91 /* deviceListViewController.xib */,
 			);
 			path = Safelet;
 			sourceTree = "<group>";
@@ -246,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52AC57BE18B87292002E039C /* Images.xcassets in Resources */,
+				52FA265C18E6F048008EAD91 /* deviceListViewController.xib in Resources */,
 				52AC57B018B87292002E039C /* InfoPlist.strings in Resources */,
 				52356A4518E6CACC00F8C363 /* searchViewController.xib in Resources */,
 				52AC57B918B87292002E039C /* Main.storyboard in Resources */,
@@ -267,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52FA265B18E6F048008EAD91 /* deviceListViewController.m in Sources */,
 				52AC57B218B87292002E039C /* main.m in Sources */,
 				52AC57BC18B87292002E039C /* safeletViewController.m in Sources */,
 				52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */,
