@@ -9,8 +9,10 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <UIKit/UIKit.h>
 
-@interface deviceListViewController : UIViewController
+@interface deviceListViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property UITableView *tableView;
 @property (nonatomic) CBCentralManager *manager;
 @property (nonatomic) NSMutableDictionary *devices;
 

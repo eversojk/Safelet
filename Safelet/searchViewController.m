@@ -43,6 +43,7 @@
     if (self.ready) {
         [manager scanForPeripheralsWithServices:nil options:nil];
         [activityView startAnimating];
+        NSLog(@"SCANNING");
     } else {
         NSLog(@"NOT READY");
     }
@@ -79,6 +80,7 @@
     // get bluetooth device name
     NSString *name = [advertisementData objectForKey:@"kCBAdvDataLocalName"];
     
+    NSLog(@"Found");
     // make sure it's giving us a name
     if (name != nil) {
         [devices setObject:aPeripheral forKey:[advertisementData objectForKey:@"kCBAdvDataLocalName"]];
@@ -91,8 +93,9 @@
         deviceListViewController *new = [[deviceListViewController alloc] initWithNibName:@"deviceListViewController" bundle:nil];
         new.manager = manager;
         new.devices = devices;
-        // swap to device list
         [self.navigationController pushViewController:new animated:YES];
+        NSLog(@"Done");
     }
 }
+
 @end
