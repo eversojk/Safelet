@@ -99,6 +99,8 @@
     [aPeripheral discoverServices:nil];
     [self.activity stopAnimating];
     self.sensorTag = aPeripheral;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account" message:[NSString stringWithFormat:@"Sucessfully connected!"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
