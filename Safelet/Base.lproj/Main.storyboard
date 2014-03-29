@@ -186,6 +186,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="fname" destination="8Q7-Oq-tY6" id="aQO-WO-KTH"/>
+                        <outlet property="lname" destination="Efe-it-hch" id="2hN-W1-rjq"/>
+                        <outlet property="passwd" destination="U5P-gK-Q5g" id="JyA-rK-0HF"/>
+                        <outlet property="uname" destination="CVw-Sa-4Fe" id="b0H-Ie-XYM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Wn-ho-wlg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,6 +11,8 @@
 		525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525E807118BA72880060F6A4 /* CoreLocation.framework */; };
 		5277086918E72A5B0065FC0D /* newAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5277086718E72A5B0065FC0D /* newAccountViewController.m */; };
 		5277086A18E72A5B0065FC0D /* newAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5277086818E72A5B0065FC0D /* newAccountViewController.xib */; };
+		5286D87618E7401F001DCD3E /* deviceListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286D87418E7401F001DCD3E /* deviceListViewController.xib */; };
+		5286D87718E7401F001DCD3E /* searchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286D87518E7401F001DCD3E /* searchViewController.xib */; };
 		52AC57A618B87292002E039C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A518B87292002E039C /* Foundation.framework */; };
 		52AC57A818B87292002E039C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A718B87292002E039C /* CoreGraphics.framework */; };
 		52AC57AA18B87292002E039C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A918B87292002E039C /* UIKit.framework */; };
@@ -46,6 +48,8 @@
 		5277086618E72A5B0065FC0D /* newAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newAccountViewController.h; sourceTree = "<group>"; };
 		5277086718E72A5B0065FC0D /* newAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newAccountViewController.m; sourceTree = "<group>"; };
 		5277086818E72A5B0065FC0D /* newAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newAccountViewController.xib; sourceTree = "<group>"; };
+		5286D87418E7401F001DCD3E /* deviceListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = deviceListViewController.xib; sourceTree = "<group>"; };
+		5286D87518E7401F001DCD3E /* searchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchViewController.xib; sourceTree = "<group>"; };
 		52AC57A218B87292002E039C /* Safelet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safelet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AC57A518B87292002E039C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52AC57A718B87292002E039C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -131,6 +135,8 @@
 		52AC57AB18B87292002E039C /* Safelet */ = {
 			isa = PBXGroup;
 			children = (
+				5286D87418E7401F001DCD3E /* deviceListViewController.xib */,
+				5286D87518E7401F001DCD3E /* searchViewController.xib */,
 				52AC57B418B87292002E039C /* safeletAppDelegate.h */,
 				52AC57B518B87292002E039C /* safeletAppDelegate.m */,
 				52AC57B718B87292002E039C /* Main.storyboard */,
@@ -256,8 +262,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				52AC57BE18B87292002E039C /* Images.xcassets in Resources */,
+				5286D87618E7401F001DCD3E /* deviceListViewController.xib in Resources */,
 				52AC57B018B87292002E039C /* InfoPlist.strings in Resources */,
 				52AC57B918B87292002E039C /* Main.storyboard in Resources */,
+				5286D87718E7401F001DCD3E /* searchViewController.xib in Resources */,
 				5277086A18E72A5B0065FC0D /* newAccountViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

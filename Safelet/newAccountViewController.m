@@ -35,4 +35,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction) buttonPress:(id) sender
+{
+    NSString *selected = [self.gender titleForSegmentAtIndex:self.gender.selectedSegmentIndex];
+    if ([selected isEqualToString:@"1"]) {
+        NSLog(@"gender is 1");
+    } else {
+        NSLog(@"gender is 0");
+    }
+    
+    NSDictionary *jsonObj = [NSDictionary dictionaryWithObjectsAndKeys:@"fname", self.fname.text,
+                             @"lname", self.lname.text, @"user", self.uname.text, @"pass", self.passwd.text, nil];
+                             
+    NSLog(@"json: %@", jsonObj);
+}
+
+- (IBAction)doneEditing:(id)sender {
+    
+    [sender endEditing:YES];
+}
 @end

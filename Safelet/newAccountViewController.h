@@ -13,6 +13,12 @@
 
 @interface newAccountViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *submit;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gender;
+@property (weak, nonatomic) IBOutlet UITextField *passwd;
+@property (weak, nonatomic) IBOutlet UITextField *uname;
+@property (weak, nonatomic) IBOutlet UITextField *lname;
+@property (weak, nonatomic) IBOutlet UITextField *fname;
 @property UIActivityIndicatorView *activity;
 @property CBPeripheral *sensorTag;
 

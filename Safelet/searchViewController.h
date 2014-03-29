@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface searchViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (strong) CBCentralManager *manager;
