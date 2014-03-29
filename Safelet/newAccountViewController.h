@@ -22,4 +22,5 @@
 @property UIActivityIndicatorView *activity;
 @property CBPeripheral *sensorTag;
 
+-(NSString*) sha1:(NSString*)input;
 @end
