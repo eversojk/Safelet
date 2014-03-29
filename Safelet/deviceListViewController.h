@@ -9,6 +9,8 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <UIKit/UIKit.h>
 
+#import "newAccountViewController.h"
+
 @interface deviceListViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property NSString *selection;

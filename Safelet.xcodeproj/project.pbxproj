@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52356A4218E6CACC00F8C363 /* searchViewController.m */; };
 		525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525E807118BA72880060F6A4 /* CoreLocation.framework */; };
+		5277086918E72A5B0065FC0D /* newAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5277086718E72A5B0065FC0D /* newAccountViewController.m */; };
+		5277086A18E72A5B0065FC0D /* newAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5277086818E72A5B0065FC0D /* newAccountViewController.xib */; };
 		52AC57A618B87292002E039C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A518B87292002E039C /* Foundation.framework */; };
 		52AC57A818B87292002E039C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A718B87292002E039C /* CoreGraphics.framework */; };
 		52AC57AA18B87292002E039C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AC57A918B87292002E039C /* UIKit.framework */; };
@@ -41,6 +43,9 @@
 		52356A4118E6CACC00F8C363 /* searchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchViewController.h; sourceTree = "<group>"; };
 		52356A4218E6CACC00F8C363 /* searchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchViewController.m; sourceTree = "<group>"; };
 		525E807118BA72880060F6A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5277086618E72A5B0065FC0D /* newAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newAccountViewController.h; sourceTree = "<group>"; };
+		5277086718E72A5B0065FC0D /* newAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newAccountViewController.m; sourceTree = "<group>"; };
+		5277086818E72A5B0065FC0D /* newAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newAccountViewController.xib; sourceTree = "<group>"; };
 		52AC57A218B87292002E039C /* Safelet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safelet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AC57A518B87292002E039C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52AC57A718B87292002E039C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +142,9 @@
 				52356A4218E6CACC00F8C363 /* searchViewController.m */,
 				52FA265818E6F048008EAD91 /* deviceListViewController.h */,
 				52FA265918E6F048008EAD91 /* deviceListViewController.m */,
+				5277086618E72A5B0065FC0D /* newAccountViewController.h */,
+				5277086718E72A5B0065FC0D /* newAccountViewController.m */,
+				5277086818E72A5B0065FC0D /* newAccountViewController.xib */,
 			);
 			path = Safelet;
 			sourceTree = "<group>";
@@ -250,6 +258,7 @@
 				52AC57BE18B87292002E039C /* Images.xcassets in Resources */,
 				52AC57B018B87292002E039C /* InfoPlist.strings in Resources */,
 				52AC57B918B87292002E039C /* Main.storyboard in Resources */,
+				5277086A18E72A5B0065FC0D /* newAccountViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +280,7 @@
 				52FA265B18E6F048008EAD91 /* deviceListViewController.m in Sources */,
 				52AC57B218B87292002E039C /* main.m in Sources */,
 				52AC57BC18B87292002E039C /* safeletViewController.m in Sources */,
+				5277086918E72A5B0065FC0D /* newAccountViewController.m in Sources */,
 				52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */,
 				52AC57B618B87292002E039C /* safeletAppDelegate.m in Sources */,
 			);

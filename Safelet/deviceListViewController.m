@@ -31,8 +31,6 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.activity];
     [self.manager setDelegate:self];
-    //self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    
     NSLog(@"Devices: %@", self.devices);
 }
 
@@ -99,8 +97,12 @@
     [aPeripheral discoverServices:nil];
     [self.activity stopAnimating];
     self.sensorTag = aPeripheral;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account" message:[NSString stringWithFormat:@"Sucessfully connected!"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account" message:[NSString stringWithFormat:@"Sucessfully connected!"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+    newAccountViewController *x = [[newAccountViewController alloc] initWithNibName:@"newAccountViewController" bundle:nil];
+    x.activity = self.activity;
+    x.sensorTag = self.sensorTag;
+    [self.navigationController pushViewController:x animated:YES];
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
