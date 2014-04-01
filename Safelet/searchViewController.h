@@ -9,6 +9,8 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <UIKit/UIKit.h>
 
+#import "bluetoothHandler.h"
+
 @interface searchViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *btn2;

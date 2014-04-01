@@ -10,6 +10,9 @@
 		52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52356A4218E6CACC00F8C363 /* searchViewController.m */; };
 		525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525E807118BA72880060F6A4 /* CoreLocation.framework */; };
 		526E70AB18EA6B27004F4EE7 /* json.m in Sources */ = {isa = PBXBuildFile; fileRef = 526E70AA18EA6B27004F4EE7 /* json.m */; };
+		526E70AE18EAA036004F4EE7 /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = 526E70AD18EAA036004F4EE7 /* data.m */; };
+		526E70B218EAAD6F004F4EE7 /* loggedinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526E70B018EAAD6F004F4EE7 /* loggedinViewController.m */; };
+		526E70B318EAAD6F004F4EE7 /* loggedinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526E70B118EAAD6F004F4EE7 /* loggedinViewController.xib */; };
 		5277086918E72A5B0065FC0D /* newAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5277086718E72A5B0065FC0D /* newAccountViewController.m */; };
 		5277086A18E72A5B0065FC0D /* newAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5277086818E72A5B0065FC0D /* newAccountViewController.xib */; };
 		5286D87618E7401F001DCD3E /* deviceListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286D87418E7401F001DCD3E /* deviceListViewController.xib */; };
@@ -29,6 +32,7 @@
 		52AC57CF18B87292002E039C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AC57CD18B87292002E039C /* InfoPlist.strings */; };
 		52AC57D118B87292002E039C /* SafeletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC57D018B87292002E039C /* SafeletTests.m */; };
 		52B5243718B8BD190057F165 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5243618B8BD190057F165 /* CoreBluetooth.framework */; };
+		52DEA01418EAC1360012EB2B /* bluetoothHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DEA01318EAC1360012EB2B /* bluetoothHandler.m */; };
 		52FA265B18E6F048008EAD91 /* deviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA265918E6F048008EAD91 /* deviceListViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +52,11 @@
 		525E807118BA72880060F6A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		526E70A918EA6B27004F4EE7 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		526E70AA18EA6B27004F4EE7 /* json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = json.m; sourceTree = "<group>"; };
+		526E70AC18EAA036004F4EE7 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
+		526E70AD18EAA036004F4EE7 /* data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = data.m; sourceTree = "<group>"; };
+		526E70AF18EAAD6F004F4EE7 /* loggedinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loggedinViewController.h; sourceTree = "<group>"; };
+		526E70B018EAAD6F004F4EE7 /* loggedinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loggedinViewController.m; sourceTree = "<group>"; };
+		526E70B118EAAD6F004F4EE7 /* loggedinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loggedinViewController.xib; sourceTree = "<group>"; };
 		5277086618E72A5B0065FC0D /* newAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newAccountViewController.h; sourceTree = "<group>"; };
 		5277086718E72A5B0065FC0D /* newAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newAccountViewController.m; sourceTree = "<group>"; };
 		5277086818E72A5B0065FC0D /* newAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newAccountViewController.xib; sourceTree = "<group>"; };
@@ -73,6 +82,8 @@
 		52AC57CE18B87292002E039C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52AC57D018B87292002E039C /* SafeletTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeletTests.m; sourceTree = "<group>"; };
 		52B5243618B8BD190057F165 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		52DEA01218EAC1360012EB2B /* bluetoothHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluetoothHandler.h; sourceTree = "<group>"; };
+		52DEA01318EAC1360012EB2B /* bluetoothHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bluetoothHandler.m; sourceTree = "<group>"; };
 		52FA265818E6F048008EAD91 /* deviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deviceListViewController.h; sourceTree = "<group>"; };
 		52FA265918E6F048008EAD91 /* deviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deviceListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +167,13 @@
 				5277086818E72A5B0065FC0D /* newAccountViewController.xib */,
 				526E70A918EA6B27004F4EE7 /* json.h */,
 				526E70AA18EA6B27004F4EE7 /* json.m */,
+				526E70AC18EAA036004F4EE7 /* data.h */,
+				526E70AD18EAA036004F4EE7 /* data.m */,
+				526E70AF18EAAD6F004F4EE7 /* loggedinViewController.h */,
+				526E70B018EAAD6F004F4EE7 /* loggedinViewController.m */,
+				526E70B118EAAD6F004F4EE7 /* loggedinViewController.xib */,
+				52DEA01218EAC1360012EB2B /* bluetoothHandler.h */,
+				52DEA01318EAC1360012EB2B /* bluetoothHandler.m */,
 			);
 			path = Safelet;
 			sourceTree = "<group>";
@@ -266,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				526E70B318EAAD6F004F4EE7 /* loggedinViewController.xib in Resources */,
 				52AC57BE18B87292002E039C /* Images.xcassets in Resources */,
 				5286D87618E7401F001DCD3E /* deviceListViewController.xib in Resources */,
 				52AC57B018B87292002E039C /* InfoPlist.strings in Resources */,
@@ -293,7 +312,10 @@
 				52FA265B18E6F048008EAD91 /* deviceListViewController.m in Sources */,
 				52AC57B218B87292002E039C /* main.m in Sources */,
 				52AC57BC18B87292002E039C /* safeletViewController.m in Sources */,
+				52DEA01418EAC1360012EB2B /* bluetoothHandler.m in Sources */,
+				526E70AE18EAA036004F4EE7 /* data.m in Sources */,
 				5277086918E72A5B0065FC0D /* newAccountViewController.m in Sources */,
+				526E70B218EAAD6F004F4EE7 /* loggedinViewController.m in Sources */,
 				52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */,
 				526E70AB18EA6B27004F4EE7 /* json.m in Sources */,
 				52AC57B618B87292002E039C /* safeletAppDelegate.m in Sources */,
