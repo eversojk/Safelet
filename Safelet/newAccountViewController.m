@@ -55,6 +55,30 @@
     
 }
 
+-(void) createPopup:(NSString *)title msg:(NSString *)msg
+{
+    UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [messageAlert show];
+}
+
+-(BOOL) checkInputs:(NSString*)fname lname:(NSString *)lname user:(NSString *)user pass:(NSString *)pass;
+{
+    if ([fname length] == 0) {
+        [self createPopup:@"Login" msg:@"First name is required."];
+        return NO;
+    } else if ([lname length] == 0) {
+        [self createPopup:@"Login" msg:@"Last name is required."];
+        return NO;
+    } else if ([user length] == 0) {
+        [self createPopup:@"Login" msg:@"Username is required."];
+       return NO;
+    } else if ([pass length] == 0) {
+        [self createPopup:@"Login" msg:@"Password is required."];
+        return NO;
+    }
+    return YES;
+}
+
 - (IBAction) buttonPress:(id) sender
 {
     NSString *selected = [self.gender titleForSegmentAtIndex:self.gender.selectedSegmentIndex];
@@ -64,24 +88,26 @@
         sex = @"m";
     }
     
-    NSString *salt = @"lalalalal";
-    NSString *salted = [NSString stringWithFormat:@"%@%@",self.passwd.text, salt];
-    NSString *hash = [self sha1:salted];
-    NSDictionary *jsonObj = [NSDictionary dictionaryWithObjectsAndKeys:self.fname.text, @"fname", self.lname.text, @"lname", self.uname.text, @"user", hash, @"pass", sex, @"gender", nil];
+    if ([self checkInputs:self.fname.text lname:self.lname.text user:self.uname.text pass:self.passwd.text]) {
+        NSString *salt = @"lalalalal";
+        NSString *salted = [NSString stringWithFormat:@"%@%@",self.passwd.text, salt];
+        NSString *hash = [self sha1:salted];
+        NSDictionary *jsonObj = [NSDictionary dictionaryWithObjectsAndKeys:self.fname.text, @"fname", self.lname.text, @"lname", self.uname.text, @"user", hash, @"pass", sex, @"gender", nil];
     
-    NSString *jsonStr = [json dictToJson:jsonObj];
-    NSLog(@"jsonStr: %@", jsonStr);
-    
-    // creating post data and url
-    NSData *postData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    //NSString *link = @"http://10.52.105.252:8080/api/create_user";
-    NSString *link = @"http://192.168.1.126:8080/api/create_user";
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", link]];
-    
-    NSMutableURLRequest *request = [json requestFromData:url type:@"POST" data:postData contentType:@"application/json charset=utf-8"];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [connection start];
+        NSString *jsonStr = [json dictToJson:jsonObj];
+        NSLog(@"jsonStr: %@", jsonStr);
+        
+        // creating post data and url
+        NSData *postData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+        //NSString *link = @"http://10.52.105.252:8080/api/create_user";
+        NSString *link = @"http://192.168.1.126:8080/api/create_user";
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", link]];
+        
+        NSMutableURLRequest *request = [json requestFromData:url type:@"POST" data:postData contentType:@"application/json charset=utf-8"];
+        
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [connection start];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -101,28 +127,24 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"Succeeded! Received %d bytes of data", [self.responseData length]);
     
-    NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    NSError *error = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"Error: %@", [error description]);
     
-    NSLog(@"Error: %@", [myError description]);
     
-    for(id key in res) {
-        id value = [res objectForKey:key];
-        
-        NSString *keyAsString = (NSString *)key;
-        NSString *valueAsString = (NSString *)value;
-        
-        NSLog(@"key: %@", keyAsString);
-        NSLog(@"value: %@", valueAsString);
+    NSString *err = [res objectForKey:@"error"];
+    if ([err length] == 0) {
+        NSLog(@"no error from server");
+        NSLog(@"cookie from server: %@", [res objectForKey:@"cookie"]);
+        [data saveLogin:self.fname.text cookie:[res objectForKey:@"cookie"]];
+        NSLog(@"loading saved data");
+        NSMutableDictionary *a = [data loadLogin];
+        NSLog(@"saved user: %@", [a objectForKey:@"user"]);
+        NSLog(@"saved cookie: %@", [a objectForKey:@"cookie"]);
+    } else {
+        [self createPopup:@"Error" msg:err];
     }
     
-    /*
-    NSArray *results = [res objectForKey:@"results"];
-    for (NSDictionary *result in results) {
-        NSString *icon = [result objectForKey:@"icon"];
-        NSLog(@"icon: %@", icon);
-    }
-    */
 }
 
 - (IBAction)doneEditing:(id)sender {

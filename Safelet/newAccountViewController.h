@@ -9,6 +9,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <UIKit/UIKit.h>
 
+#import "data.h"
 #import "deviceListViewController.h"
 #import "json.h"
 
@@ -24,5 +25,8 @@
 @property CBPeripheral *sensorTag;
 @property  NSMutableData *responseData;
 
--(NSString*) sha1:(NSString*)input;
+-(NSString *) sha1:(NSString *)input;
+-(BOOL) checkInputs:(NSString *)fname lname:(NSString *)lname user:(NSString *)user pass:(NSString *)pass;
+-(void) createPopup:(NSString *)title msg:(NSString *)msg;
+
 @end

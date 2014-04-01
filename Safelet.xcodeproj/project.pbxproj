@@ -10,6 +10,7 @@
 		52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52356A4218E6CACC00F8C363 /* searchViewController.m */; };
 		525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525E807118BA72880060F6A4 /* CoreLocation.framework */; };
 		526E70AB18EA6B27004F4EE7 /* json.m in Sources */ = {isa = PBXBuildFile; fileRef = 526E70AA18EA6B27004F4EE7 /* json.m */; };
+		526E70AE18EAA036004F4EE7 /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = 526E70AD18EAA036004F4EE7 /* data.m */; };
 		5277086918E72A5B0065FC0D /* newAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5277086718E72A5B0065FC0D /* newAccountViewController.m */; };
 		5277086A18E72A5B0065FC0D /* newAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5277086818E72A5B0065FC0D /* newAccountViewController.xib */; };
 		5286D87618E7401F001DCD3E /* deviceListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5286D87418E7401F001DCD3E /* deviceListViewController.xib */; };
@@ -48,6 +49,8 @@
 		525E807118BA72880060F6A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		526E70A918EA6B27004F4EE7 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		526E70AA18EA6B27004F4EE7 /* json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = json.m; sourceTree = "<group>"; };
+		526E70AC18EAA036004F4EE7 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
+		526E70AD18EAA036004F4EE7 /* data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = data.m; sourceTree = "<group>"; };
 		5277086618E72A5B0065FC0D /* newAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newAccountViewController.h; sourceTree = "<group>"; };
 		5277086718E72A5B0065FC0D /* newAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newAccountViewController.m; sourceTree = "<group>"; };
 		5277086818E72A5B0065FC0D /* newAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newAccountViewController.xib; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				5277086818E72A5B0065FC0D /* newAccountViewController.xib */,
 				526E70A918EA6B27004F4EE7 /* json.h */,
 				526E70AA18EA6B27004F4EE7 /* json.m */,
+				526E70AC18EAA036004F4EE7 /* data.h */,
+				526E70AD18EAA036004F4EE7 /* data.m */,
 			);
 			path = Safelet;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				52FA265B18E6F048008EAD91 /* deviceListViewController.m in Sources */,
 				52AC57B218B87292002E039C /* main.m in Sources */,
 				52AC57BC18B87292002E039C /* safeletViewController.m in Sources */,
+				526E70AE18EAA036004F4EE7 /* data.m in Sources */,
 				5277086918E72A5B0065FC0D /* newAccountViewController.m in Sources */,
 				52356A4418E6CACC00F8C363 /* searchViewController.m in Sources */,
 				526E70AB18EA6B27004F4EE7 /* json.m in Sources */,
