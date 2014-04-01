@@ -16,6 +16,17 @@ client = MongoClient()
 client.write_concern = {'j': True}
 db = client['safelet']
 
+def get_json_body(request):
+    json_obj = {}
+    error = ''
+    try:
+        json_obj = request.json_body
+    except ValueError:
+        error = u'No body included'
+        json_obj = {}
+
+    return json_obj, error
+
 @view_config(renderer='json')
 def create_user(request):
     coll = db['users']
@@ -24,12 +35,7 @@ def create_user(request):
         'error'     : u'',
     }
 
-
-    json_obj = {}
-    try:
-        json_obj = request.json_body
-    except ValueError:
-        response['error'] = u'No body included'
+    json_obj, response['error'] = get_json_body(request)
 
     if json_obj:
         try:
@@ -45,13 +51,52 @@ def create_user(request):
         except pymongo.errors.DuplicateKeyError:
             response['error'] = u'User already exists'
 
+    print 'login'
+    pprint(response)
+    return response
+
+@view_config(renderer='json')
+def login_user(request):
+    coll = db['users']
+
+    response = {
+        'response'  : u'',
+        'error'     : u'',
+    }
+
+    json_obj, response['error'] = get_json_body(request)
+
+    if json_obj:
+        user = coll.find_one({'user' : json_obj['user']})
+        if user:
+            if json_obj['pass'] != user['pass']:
+                response['error'] = 'Incorrect login info'
+            else:
+                # generate new user cookie
+                cookie = str(uuid.uuid4())
+                update = {
+                    'cookie'    : cookie,
+                    'expires'   : datetime.datetime.now() + datetime.timedelta(hours=48),
+                }
+                db['cookies'].update({'user' : user['user']}, {'$set' : update})
+                response['cookie'] = cookie
+        else:
+            response['error'] = 'Incorrect login info'
+
+    print 'login'
     pprint(response)
     return response
 
 if __name__ == '__main__':
     config = Configurator()
     config.add_route('api', '/api/{name}')
+
     config.add_view(create_user, route_name='api', renderer='json')
+    config.commit()
+
+    config.add_view(login_user, route_name='api', renderer='json')
+    config.commit()
+
     app = config.make_wsgi_app()
     server = make_server('0.0.0.0', 8080, app)
     server.serve_forever()
