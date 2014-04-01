@@ -20,7 +20,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -28,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.responseData = [NSMutableData alloc];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -70,6 +70,7 @@
     NSDictionary *jsonObj = [NSDictionary dictionaryWithObjectsAndKeys:self.fname.text, @"fname", self.lname.text, @"lname", self.uname.text, @"user", hash, @"pass", sex, @"gender", nil];
     
     NSString *jsonStr = [json dictToJson:jsonObj];
+    NSLog(@"jsonStr: %@", jsonStr);
     
     // creating post data and url
     NSData *postData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -83,8 +84,49 @@
     [connection start];
 }
 
-- (IBAction)doneEditing:(id)sender {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"Received a response");
+    [self.responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSLog(@"Adding data");
+    [self.responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"Succeeded! Received %d bytes of data", [self.responseData length]);
     
+    NSError *myError = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    NSLog(@"Error: %@", [myError description]);
+    
+    for(id key in res) {
+        id value = [res objectForKey:key];
+        
+        NSString *keyAsString = (NSString *)key;
+        NSString *valueAsString = (NSString *)value;
+        
+        NSLog(@"key: %@", keyAsString);
+        NSLog(@"value: %@", valueAsString);
+    }
+    
+    /*
+    NSArray *results = [res objectForKey:@"results"];
+    for (NSDictionary *result in results) {
+        NSString *icon = [result objectForKey:@"icon"];
+        NSLog(@"icon: %@", icon);
+    }
+    */
+}
+
+- (IBAction)doneEditing:(id)sender {
     [sender endEditing:YES];
 }
+
 @end

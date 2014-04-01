@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *fname;
 @property UIActivityIndicatorView *activity;
 @property CBPeripheral *sensorTag;
+@property  NSMutableData *responseData;
 
 -(NSString*) sha1:(NSString*)input;
 @end
