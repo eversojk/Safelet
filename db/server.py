@@ -19,10 +19,9 @@ def create_user(request):
     }
 
     json_obj = request.get('json', {})
-    pprint(json_obj)
     if json_obj:
         coll = db['users']
-        coll.insert(request.json)
+        coll.insert(json_obj)
         response['response'] = u'User was added successfully'
     else:
         response['error'] = u'No body included'
