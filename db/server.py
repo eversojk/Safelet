@@ -3,6 +3,8 @@
 import datetime
 import uuid
 
+import pymongo
+
 from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.view import view_config
@@ -31,7 +33,6 @@ def get_json_body(request):
 def create_user(request):
     coll = db['users']
     response = {
-        'response'  : u'',
         'error'     : u'',
     }
 
@@ -58,9 +59,7 @@ def create_user(request):
 @view_config(route_name='api', match_param='name=login_user', renderer='json')
 def login_user(request):
     coll = db['users']
-
     response = {
-        'response'  : u'',
         'error'     : u'',
     }
 
@@ -90,9 +89,7 @@ def login_user(request):
 @view_config(route_name='api', match_param='name=login_cookie', renderer='json')
 def login_cookie(request):
     coll = db['cookies']
-
     response = {
-        'response'  : u'',
         'error'     : u'',
     }
 
