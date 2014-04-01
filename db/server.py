@@ -117,6 +117,23 @@ def login_cookie(request):
     pprint(response)
     return response
 
+@view_config(route_name='api', match_param='name=log', renderer='json')
+def log(request):
+    coll = db['log']
+    response = {
+        'error'     : u'',
+    }
+
+    json_obj, response['error'] = get_json_body(request)
+
+    if json_obj:
+        coll.insert(json_obj)
+
+    print 'log'
+    pprint(response)
+    return response
+
+
 if __name__ == '__main__':
     config = Configurator()
     config.add_route('api', '/api/{name}')
