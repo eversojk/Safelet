@@ -128,9 +128,9 @@ def log(request):
 
     if json_obj:
         coll.insert(json_obj)
+        pprint(json_obj)
 
     print 'log'
-    pprint(response)
     return response
 
 
