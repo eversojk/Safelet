@@ -87,6 +87,39 @@ def login_user(request):
     pprint(response)
     return response
 
+@view_config(renderer='json')
+def login_cookie(request):
+    coll = db['cookies']
+
+    response = {
+        'response'  : u'',
+        'error'     : u'',
+    }
+
+    json_obj, response['error'] = get_json_body(request)
+
+    if json_obj:
+        user = coll.find_one({'user' : json_obj['user']})
+        if user:
+            if json_obj['cookie'] != user['cookie']:
+                response['error'] = 'Bad cookie'
+            else:
+                if user['expires'] < datetime.datetime.now():
+                    # generate new user cookie
+                    cookie = str(uuid.uuid4())
+                    update = {
+                        'cookie'    : cookie,
+                        'expires'   : datetime.datetime.now() + datetime.timedelta(hours=48),
+                    }
+                    db['cookies'].update({'user' : user['user']}, {'$set' : update})
+                    response['cookie'] = cookie
+        else:
+            response['error'] = 'Incorrect login info'
+
+    print 'cookie'
+    pprint(response)
+    return response
+
 if __name__ == '__main__':
     config = Configurator()
     config.add_route('api', '/api/{name}')
@@ -95,6 +128,9 @@ if __name__ == '__main__':
     config.commit()
 
     config.add_view(login_user, route_name='api', renderer='json')
+    config.commit()
+
+    config.add_view(login_cookie, route_name='api', renderer='json')
     config.commit()
 
     app = config.make_wsgi_app()
