@@ -81,7 +81,7 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
-    [request setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     
