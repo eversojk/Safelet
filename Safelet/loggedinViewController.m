@@ -7,6 +7,7 @@
 //
 
 #import "loggedinViewController.h"
+#import "json.h"
 
 @interface loggedinViewController ()
 
@@ -34,6 +35,10 @@
     self.simpleKeysChar = [CBUUID UUIDWithString:@"ffe1"];
     [self.manager cancelPeripheralConnection:self.sensorTag];
     [self.manager connectPeripheral:self.sensorTag options:nil];
+    self.locManager = [[CLLocationManager alloc] init];
+    self.locManager.delegate = self;
+    self.locManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.responseData = [NSMutableData alloc];
 }
 
 - (void)showWait
@@ -54,6 +59,7 @@
 - (IBAction) buttonPress:(id) sender;
 {
     if (sender == self.testBtn) {
+        self.test = YES;
         [self showWait];
     }
 }
@@ -70,16 +76,30 @@
             uint8_t location = ptr[0];
             switch (location) {
                 case 1:
-                    NSLog(@"Right button was pressed");
-                    self.waitingShadow.hidden = YES;
-                    self.waitingLabel.hidden = YES;
-                    [self.activity stopAnimating];
+                    if (self.test) {
+                        NSLog(@"right test");
+                        self.waitingShadow.hidden = YES;
+                        self.waitingLabel.hidden = YES;
+                        [self.activity stopAnimating];
+                        self.test = NO;
+                    } else {
+                        NSLog(@"right real");
+                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                        [self.locManager startUpdatingLocation];
+                    }
                     break;
                 case 2:
-                    NSLog(@"Left button was pressed");
-                    self.waitingShadow.hidden = YES;
-                    self.waitingLabel.hidden = YES;
-                    [self.activity stopAnimating];
+                    if (self.test) {
+                        NSLog(@"left test");
+                        self.waitingShadow.hidden = YES;
+                        self.waitingLabel.hidden = YES;
+                        [self.activity stopAnimating];
+                        self.test = NO;
+                    } else {
+                        NSLog(@"left real");
+                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                        [self.locManager startUpdatingLocation];
+                    }
                     break;
                 default:
                     NSLog(@"Button was released");
@@ -124,5 +144,65 @@
         }
         NSLog(@"Ready for use");
     }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *loc = newLocation;
+    //currentLoc = newLocation;
+    //[latValue setText:[NSString stringWithFormat:@"%f", currentLoc.coordinate.latitude]];
+    //[longValue setText:[NSString stringWithFormat:@"%f", currentLoc.coordinate.longitude]];
+    
+    NSMutableDictionary *log =[[NSMutableDictionary alloc] init];
+    NSLog(@"jsondict: %@", log);
+    [log setObject:[NSNumber numberWithDouble:loc.coordinate.latitude] forKey:@"lat"];
+    [log setObject:[NSNumber numberWithDouble:loc.coordinate.longitude] forKey:@"long"];
+    [log setObject:@"user" forKey:@"user"];
+    
+    NSString *jsonStr = [json dictToJson:log];
+    NSLog(@"jsonStr: %@", jsonStr);
+    
+    // creating post data and url
+    NSData *postData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    //NSString *link = @"http://10.52.105.252:8080/api/log";
+    NSString *link = @"http://192.168.1.126:8080/api/log";
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", link]];
+        
+    NSMutableURLRequest *request = [json requestFromData:url type:@"POST" data:postData contentType:@"application/json charset=utf-8"];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+    
+    [self.locManager stopUpdatingLocation];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"Received a response");
+    [self.responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSLog(@"Adding data");
+    [self.responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"Succeeded! Received %d bytes of data", [self.responseData length]);
+    
+    NSError *error = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"Error: %@", [error description]);
+    
+    NSString *err = [res objectForKey:@"error"];
+    if ([err length] == 0) {
+        NSLog(@"no error from server");
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    } else {
+        NSLog(@"log error");
+    }
+    
 }
 @end

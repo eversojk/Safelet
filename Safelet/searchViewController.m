@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Team Safelet. All rights reserved.
 //
 
+#import <CommonCrypto/CommonDigest.h>
+
 #import "deviceListViewController.h"
 #import "searchViewController.h"
 
@@ -145,5 +147,23 @@
             }
         }
     }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"Succeeded! Received %d bytes of data", [self.responseData length]);
+    
+    NSError *error = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&error];
+    NSLog(@"Error: %@", [error description]);
+    
+    NSString *err = [res objectForKey:@"error"];
+    if ([err length] == 0) {
+        [data saveLogin:self.user.text cookie:[res objectForKey:@"cookie"]];
+        //[self.navigationController pushViewController:x animated:YES];
+    } else {
+        NSLog(@"error");
+        //[self createPopup:@"Error" msg:err];
+    }
+    
 }
 @end
