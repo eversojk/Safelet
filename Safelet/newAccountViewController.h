@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 #import "deviceListViewController.h"
+#import "json.h"
 
 @interface newAccountViewController : UIViewController
 

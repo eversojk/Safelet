@@ -69,21 +69,15 @@
     NSString *hash = [self sha1:salted];
     NSDictionary *jsonObj = [NSDictionary dictionaryWithObjectsAndKeys:self.fname.text, @"fname", self.lname.text, @"lname", self.uname.text, @"user", hash, @"pass", sex, @"gender", nil];
     
-    // json encoding
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonObj options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *jsonStr = [json dictToJson:jsonObj];
     
     // creating post data and url
     NSData *postData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *link = @"http://10.52.105.252:8080/api/create_user";
+    //NSString *link = @"http://10.52.105.252:8080/api/create_user";
+    NSString *link = @"http://192.168.1.126:8080/api/create_user";
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", link]];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/json charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
+    NSMutableURLRequest *request = [json requestFromData:url type:@"POST" data:postData contentType:@"application/json charset=utf-8"];
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [connection start];
