@@ -33,6 +33,7 @@
 		52AC57D118B87292002E039C /* SafeletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC57D018B87292002E039C /* SafeletTests.m */; };
 		52B5243718B8BD190057F165 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5243618B8BD190057F165 /* CoreBluetooth.framework */; };
 		52DEA01418EAC1360012EB2B /* bluetoothHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DEA01318EAC1360012EB2B /* bluetoothHandler.m */; };
+		52DEA01618EADA810012EB2B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DEA01518EADA810012EB2B /* AudioToolbox.framework */; };
 		52FA265B18E6F048008EAD91 /* deviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA265918E6F048008EAD91 /* deviceListViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		52B5243618B8BD190057F165 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		52DEA01218EAC1360012EB2B /* bluetoothHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bluetoothHandler.h; sourceTree = "<group>"; };
 		52DEA01318EAC1360012EB2B /* bluetoothHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bluetoothHandler.m; sourceTree = "<group>"; };
+		52DEA01518EADA810012EB2B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		52FA265818E6F048008EAD91 /* deviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deviceListViewController.h; sourceTree = "<group>"; };
 		52FA265918E6F048008EAD91 /* deviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deviceListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DEA01618EADA810012EB2B /* AudioToolbox.framework in Frameworks */,
 				525E807218BA72880060F6A4 /* CoreLocation.framework in Frameworks */,
 				52B5243718B8BD190057F165 /* CoreBluetooth.framework in Frameworks */,
 				52AC57A818B87292002E039C /* CoreGraphics.framework in Frameworks */,
@@ -136,6 +139,7 @@
 		52AC57A418B87292002E039C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52DEA01518EADA810012EB2B /* AudioToolbox.framework */,
 				525E807118BA72880060F6A4 /* CoreLocation.framework */,
 				52B5243618B8BD190057F165 /* CoreBluetooth.framework */,
 				52AC57A518B87292002E039C /* Foundation.framework */,
