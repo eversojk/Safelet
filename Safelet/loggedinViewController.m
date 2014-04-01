@@ -54,7 +54,6 @@
 - (IBAction) buttonPress:(id) sender;
 {
     if (sender == self.testBtn) {
-        NSLog(@"test connection button was hit");
         [self showWait];
     }
 }
@@ -72,9 +71,15 @@
             switch (location) {
                 case 1:
                     NSLog(@"Right button was pressed");
+                    self.waitingShadow.hidden = YES;
+                    self.waitingLabel.hidden = YES;
+                    [self.activity stopAnimating];
                     break;
                 case 2:
                     NSLog(@"Left button was pressed");
+                    self.waitingShadow.hidden = YES;
+                    self.waitingLabel.hidden = YES;
+                    [self.activity stopAnimating];
                     break;
                 default:
                     NSLog(@"Button was released");

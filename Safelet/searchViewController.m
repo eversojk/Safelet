@@ -134,7 +134,7 @@
             uint8_t location = ptr[0];
             switch (location) {
                 case 1:
-                    NSLog(@"Right button was pressed");
+                    NSLog(@"testRight button was pressed");
                     break;
                 case 2:
                     NSLog(@"Left button was pressed");
