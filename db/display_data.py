@@ -4,5 +4,5 @@ from pymongo import MongoClient
 from pprint import pprint
 
 client = MongoClient()
-coll = client['safelet']['users']
+coll = client['safelet']['log']
 pprint(list(coll.find()))
