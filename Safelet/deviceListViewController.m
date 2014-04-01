@@ -31,6 +31,8 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.activity];
     [self.manager setDelegate:self];
+    self.simpleKeys = [CBUUID UUIDWithString:@"ffe0"];
+    self.simpleKeysChar = [CBUUID UUIDWithString:@"ffe1"];
     NSLog(@"Devices: %@", self.devices);
 }
 
@@ -84,6 +86,7 @@
         [self.activity startAnimating];
         CBPeripheral *sensortag = [self.devices objectForKey:self.selection];
         [self.manager connectPeripheral:sensortag options:nil];
+        self.sensorTag = sensortag;
     }
     // cancel
     else if (buttonIndex == 1) {
@@ -99,10 +102,20 @@
     self.sensorTag = aPeripheral;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account" message:[NSString stringWithFormat:@"Sucessfully connected!"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
-    newAccountViewController *x = [[newAccountViewController alloc] initWithNibName:@"newAccountViewController" bundle:nil];
-    x.activity = self.activity;
-    x.sensorTag = self.sensorTag;
-    [self.navigationController pushViewController:x animated:YES];
+    
+    if ([self.previous isEqualToString:@"new"]) {
+        newAccountViewController *x = [[newAccountViewController alloc] initWithNibName:@"newAccountViewController" bundle:nil];
+        x.activity = self.activity;
+        x.sensorTag = self.sensorTag;
+        x.manager = self.manager;
+        [self.navigationController pushViewController:x animated:YES];
+    } else {
+        loggedinViewController *x = [[loggedinViewController alloc] initWithNibName:@"loggedinViewController" bundle:nil];
+        x.activity = self.activity;
+        x.sensorTag = self.sensorTag;
+        x.manager = self.manager;
+        [self.navigationController pushViewController:x animated:YES];
+    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
@@ -111,4 +124,33 @@
     [self.activity stopAnimating];
 }
 
+- (void) peripheral:(CBPeripheral *)aPeripheral didDiscoverServices:(NSError *)error
+{
+    NSLog(@"Discovered services");
+    for (CBService *s in aPeripheral.services) {
+        if ([s.UUID isEqual:self.simpleKeys]) {
+            NSLog(@"Found simpleKeys");
+            [self.sensorTag discoverCharacteristics:nil forService:s];
+        }
+    }
+    NSLog(@"Finished discovering services");
+}
+
+- (void) peripheral:(CBPeripheral *)aPeripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
+{
+   if (error) {
+       NSLog(@"There was an error in didDiscoverCharacteristicsForService");
+   }
+    
+    if ([service.UUID isEqual:self.simpleKeys]) {
+        NSLog(@"Searching for characteristics");
+        for (CBCharacteristic *c in service.characteristics) {
+            if ([c.UUID isEqual:self.simpleKeysChar]) {
+                NSLog(@"Found simpleykeys characteristics");
+                [self.sensorTag setNotifyValue:YES forCharacteristic:c];
+            }
+        }
+        NSLog(@"Ready for use");
+    }
+}
 @end

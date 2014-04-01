@@ -11,6 +11,7 @@
 
 #import "data.h"
 #import "deviceListViewController.h"
+#import "loggedinViewController.h"
 #import "json.h"
 
 @interface newAccountViewController : UIViewController
@@ -21,9 +22,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *uname;
 @property (weak, nonatomic) IBOutlet UITextField *lname;
 @property (weak, nonatomic) IBOutlet UITextField *fname;
+@property (strong) CBCentralManager *manager;
 @property UIActivityIndicatorView *activity;
 @property CBPeripheral *sensorTag;
-@property  NSMutableData *responseData;
+@property NSMutableData *responseData;
 
 -(NSString *) sha1:(NSString *)input;
 -(BOOL) checkInputs:(NSString *)fname lname:(NSString *)lname user:(NSString *)user pass:(NSString *)pass;

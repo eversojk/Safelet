@@ -131,7 +131,6 @@
     NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&error];
     NSLog(@"Error: %@", [error description]);
     
-    
     NSString *err = [res objectForKey:@"error"];
     if ([err length] == 0) {
         NSLog(@"no error from server");
@@ -141,6 +140,10 @@
         NSMutableDictionary *a = [data loadLogin];
         NSLog(@"saved user: %@", [a objectForKey:@"user"]);
         NSLog(@"saved cookie: %@", [a objectForKey:@"cookie"]);
+        loggedinViewController *x = [[loggedinViewController alloc] initWithNibName:@"loggedinViewController" bundle:nil];
+        x.activity = self.activity;
+        x.sensorTag = self.sensorTag;
+        [self.navigationController pushViewController:x animated:YES];
     } else {
         [self createPopup:@"Error" msg:err];
     }

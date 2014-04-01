@@ -41,10 +41,12 @@
     // existing account
     if ((UIButton *) sender == self.btn1) {
         self.nextView = @"old";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login" message:[NSString stringWithFormat:@"Make sure your Safelet is discoverable before continuing."] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     // new account
     } else {
         self.nextView = @"new";
-       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account" message:[NSString stringWithFormat:@"The first step of a new account is to find your Safelet."] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account" message:[NSString stringWithFormat:@"The first step of a new account is to find your Safelet. Make sure it is discoverable."] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
     
@@ -104,11 +106,44 @@
             v.manager = self.manager;
             v.devices = self.devices;
             v.activity = self.activityView;
+            v.previous = @"new";
             [self.navigationController pushViewController:v animated:YES];
         } else {
-            NSLog(@"NOT IMPLEMENTED");
+           deviceListViewController *v = [[deviceListViewController alloc] initWithNibName:@"deviceListViewController" bundle:nil];
+            v.manager = self.manager;
+            v.devices = self.devices;
+            v.activity = self.activityView;
+            v.previous = @"old";
+            [self.navigationController pushViewController:v animated:YES];
         }
-        
+    }
+}
+
+- (void) peripheral:(CBPeripheral *)aPeripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"There was an error in didUpdateValueForCharacteristic");
+    }
+    
+    NSLog(@"updated value here?!");
+    CBUUID *simpleKeys = [CBUUID UUIDWithString:@"ffe0"];
+    CBUUID *simpleKeysChar = [CBUUID UUIDWithString:@"ffe1"];
+    if ([characteristic.UUID isEqual:simpleKeysChar]) {
+        uint8_t *ptr = (uint8_t *)[characteristic.value bytes];
+        if (ptr) {
+            uint8_t location = ptr[0];
+            switch (location) {
+                case 1:
+                    NSLog(@"Right button was pressed");
+                    break;
+                case 2:
+                    NSLog(@"Left button was pressed");
+                    break;
+                default:
+                    NSLog(@"Button was released");
+                    break;
+            }
+        }
     }
 }
 @end

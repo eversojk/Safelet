@@ -19,5 +19,10 @@
 @property CBCentralManager *manager;
 @property NSMutableDictionary *devices;
 @property CBPeripheral *sensorTag;
+@property NSString *previous;
+
+@property CBUUID *simpleKeys;
+@property CBUUID *simpleKeysChar;
+
 
 @end
